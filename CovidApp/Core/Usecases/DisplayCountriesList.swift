@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias DisplayCountriesListCompletionHandler = (_ books: Result<[Country]>) -> Void
+typealias DisplayCountriesListCompletionHandler = (_ countries: Result<[Country]>) -> Void
 
 protocol DisplayCountriesListUseCase {
     func displayCountries(completion: @escaping DisplayCountriesListCompletionHandler)

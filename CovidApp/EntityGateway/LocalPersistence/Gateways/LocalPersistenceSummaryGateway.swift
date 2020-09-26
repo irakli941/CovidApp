@@ -22,6 +22,16 @@ class CoreDataSummaryGateway: LocalPersistenceSummaryGateway {
     
     func save(summary: Summary) {
         // FIXME implement
+        guard let coreDataSummary = viewContext.addEntity(withType: SummaryCoreData.self) else {
+            print((CoreError(message: "Failed adding the summary in the data base")))
+            return
+        }
+        do {
+            try viewContext.save()
+        } catch {
+            viewContext.delete(coreDataSummary)
+            print((CoreError(message: "Failed adding the summary in the data base")))
+        }
     }
     
     func fetchSummary(completion: @escaping (FetchSummaryCompletionHandler)) {
@@ -31,7 +41,7 @@ class CoreDataSummaryGateway: LocalPersistenceSummaryGateway {
             let summary = Summary(global: global, countries: countries)
             completion(.success(summary))
         } else {
-            completion(.failure(CoreError(message: "Failed retrieving books the data base")))
+            completion(.failure(CoreError(message: "Failed retrieving summary the data base")))
         }
     }
 }
