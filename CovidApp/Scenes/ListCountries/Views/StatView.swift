@@ -28,7 +28,7 @@ class StatView: UIView {
     
     private var quantity: Int? {
         didSet {
-            quantityLabel.text = String(quantity ?? 0)
+            quantityLabel.text = String(formatNumber(quantity ?? 0)) 
         }
     }
     
