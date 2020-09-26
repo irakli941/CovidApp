@@ -1,5 +1,5 @@
 //
-//  ApiCountriesGateway.swift
+//  ApiSummaryGateway.swift
 //  CovidApp
 //
 //  Created by Irakli on 9/26/20.
@@ -8,12 +8,11 @@
 
 import Foundation
 
-protocol ApiCountriesGateway: CountriesGateway {
+protocol ApiSummaryGateway: SummaryGateway {
     
 }
 
-
-class ApiCountriesGatewayImpl: ApiCountriesGateway {
+class ApiSummaryGatewayImpl: ApiSummaryGateway {
     
     let apiClient: ApiClient
     
@@ -21,7 +20,7 @@ class ApiCountriesGatewayImpl: ApiCountriesGateway {
         self.apiClient = apiClient
     }
     
-    func fetchSummary(completion: @escaping CountriesGatewayCompletionHandler) {
+    func fetchSummary(completion: @escaping FetchSummaryCompletionHandler) {
         let request = SummaryApiRequest()
         apiClient.execute(request: request) { (result : Result<ApiResponse<Summary>>) in
             switch result {

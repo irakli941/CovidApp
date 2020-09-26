@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CountryCoreData" representedClassName="CountryCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="newConfirmed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="newDeaths" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="newRecovered" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="slug" optional="YES" attributeType="String"/>
+        <attribute name="totalConfirmed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalDeaths" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalRecovered" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="GlobalCoreData" representedClassName="GlobalCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="totalConfirmed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalDeaths" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="totalRecovered" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="SummaryCoreData" representedClassName="SummaryCoreData" syncable="YES" codeGenerationType="class">
+        <relationship name="countries" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CountryCoreData"/>
+        <relationship name="global" maxCount="1" deletionRule="Nullify" destinationEntity="GlobalCoreData"/>
+    </entity>
+    <elements>
+        <element name="CountryCoreData" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="GlobalCoreData" positionX="-9" positionY="90" width="128" height="88"/>
+        <element name="SummaryCoreData" positionX="9" positionY="108" width="128" height="73"/>
+    </elements>
+</model>

@@ -14,6 +14,7 @@ class StatView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
@@ -28,7 +29,7 @@ class StatView: UIView {
     
     private var quantity: Int? {
         didSet {
-            quantityLabel.text = String(formatNumber(quantity ?? 0)) 
+            quantityLabel.text = String(formatNumber(quantity ?? 0))
         }
     }
     

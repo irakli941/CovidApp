@@ -9,7 +9,15 @@
 import Foundation
 
 struct Global: Decodable {
-    let TotalConfirmed: Int?
-    let TotalRecovered: Int?
-    let TotalDeaths: Int?
+    let totalConfirmed: Int?
+    let totalRecovered: Int?
+    let totalDeaths: Int?
+}
+
+extension Global {
+    enum CodingKeys: String, CodingKey {
+        case totalConfirmed = "TotalConfirmed"
+        case totalRecovered = "TotalRecovered"
+        case totalDeaths = "TotalDeaths"
+    }
 }

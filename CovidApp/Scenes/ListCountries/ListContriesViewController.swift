@@ -62,6 +62,7 @@ extension ListCountriesViewController: UICollectionViewDataSource {
         presenter.configure(cell: cell, forRow: indexPath.row)
         return cell
     }
+    
 }
 
 // MARK: UICollectionViewDelegateFlowLayout

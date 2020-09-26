@@ -15,9 +15,9 @@ protocol DisplayCountriesListUseCase {
 }
 
 class DisplayCountriesListUseCaseImpl: DisplayCountriesListUseCase {
-    let countriesGateway: CountriesGateway
+    let countriesGateway: SummaryGateway
     
-    init(countriesGateway: CountriesGateway) {
+    init(countriesGateway: SummaryGateway) {
         self.countriesGateway = countriesGateway
     }
     
@@ -25,7 +25,7 @@ class DisplayCountriesListUseCaseImpl: DisplayCountriesListUseCase {
         self.countriesGateway.fetchSummary { (result) in
             switch result {
             case let .success(response):
-                completion(.success(response.Countries))
+                completion(.success(response.countries))
             case let .failure(error):
                 print(error)
                 completion(.failure(error))

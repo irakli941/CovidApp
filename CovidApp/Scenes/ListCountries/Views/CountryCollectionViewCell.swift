@@ -17,7 +17,8 @@ class CountryCollectionViewCell: UICollectionViewCell, CountryCellView {
     private let countryNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
+        label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
@@ -40,7 +41,8 @@ class CountryCollectionViewCell: UICollectionViewCell, CountryCellView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .leading
         stackView.addArrangedSubview(confirmedStatView)
         stackView.addArrangedSubview(recoveredStatView)
         stackView.addArrangedSubview(deathsStatView)
@@ -49,10 +51,10 @@ class CountryCollectionViewCell: UICollectionViewCell, CountryCellView {
     
     var country: Country? {
         didSet {
-            countryNameLabel.text = country?.Country
-            confirmedStatView.set(quantity: country?.TotalConfirmed)
-            recoveredStatView.set(quantity: country?.TotalRecovered)
-            deathsStatView.set(quantity: country?.TotalDeaths)
+            countryNameLabel.text = country?.name
+            confirmedStatView.set(quantity: country?.totalConfirmed)
+            recoveredStatView.set(quantity: country?.totalRecovered)
+            deathsStatView.set(quantity: country?.totalDeaths)
         }
     }
     

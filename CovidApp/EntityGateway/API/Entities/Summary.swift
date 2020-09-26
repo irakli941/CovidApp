@@ -9,6 +9,13 @@
 import Foundation
 
 struct Summary: Decodable {
-    let Global: Global
-    let Countries: [Country]
+    let global: Global
+    let countries: [Country]
+}
+
+extension Summary {
+    enum CodingKeys: String, CodingKey {
+        case global = "Global"
+        case countries = "Countries"
+    }
 }

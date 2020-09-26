@@ -27,7 +27,7 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     private let displayCountriesListUseCase: DisplayCountriesListUseCase
     internal let router: ListCountriesRouter //FIXME private
     
-    private var countries = [Country(Country: "Georgia", CountryCode: "GE", Slug: "georgia", TotalConfirmed: 4000, TotalRecovered: 3000, TotalDeaths: 20)]
+    private var countries = [Country.Mock]
     
 //    private var countries = [Country]()
     

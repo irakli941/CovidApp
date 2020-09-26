@@ -12,8 +12,11 @@ import Foundation
 class ListCountriesConfigurator {
     func configure(for viewController: ListCountriesViewController) {
         let apiClient = ApiClientImplementation()
-        let apiCoutriesGateway = ApiCountriesGatewayImpl(apiClient: apiClient)
-        let displayCountriesListUseCase = DisplayCountriesListUseCaseImpl(countriesGateway: apiCoutriesGateway)
+        let apiSummaryGateway = ApiSummaryGatewayImpl(apiClient: apiClient)
+        let viewContext = CoreDataStack.sharedInstance.persistentContainer.viewContext
+        let coreDataSummaryGateway = CoreDataSummaryGateway(viewContext: viewContext)
+        let summaryGateway = CacheSummaryGateWay(apiSummaryGateway: apiSummaryGateway, localPersistenceSummaryGateway: coreDataSummaryGateway)
+        let displayCountriesListUseCase = DisplayCountriesListUseCaseImpl(countriesGateway: summaryGateway)
         let router = ListCountriesRouterImpl(viewController: viewController)
         let presenter = ListCountriesPresenterImpl(view: viewController,
                                                    displayCountriesListUseCase: displayCountriesListUseCase,
