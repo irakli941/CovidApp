@@ -16,16 +16,20 @@ protocol ListCountriesPresenter {
     var numberOfCountries: Int { get }
     var router: ListCountriesRouter { get }
     func viewDidLoad()
+    func configure(cell: CountryCellView, forRow row: Int)
     func didSelect(row: Int)
 }
 
 
 class ListCountriesPresenterImpl: ListCountriesPresenter {
+    
     private weak var view: ListCountriesView?
     private let displayCountriesListUseCase: DisplayCountriesListUseCase
     internal let router: ListCountriesRouter //FIXME private
     
-    private var countries = [Country]()
+    private var countries = [Country(Country: "Georgia", CountryCode: "GE", Slug: "georgia", TotalConfirmed: 4000, TotalRecovered: 3000, TotalDeaths: 20)]
+    
+//    private var countries = [Country]()
     
     var numberOfCountries: Int {
         return countries.count
@@ -40,12 +44,33 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     }
     
     func viewDidLoad() {
+//        displayCountriesListUseCase.displayCountries { (result) in
+//            switch result {
+//            case let .success(countries):
+//                self.handleCountriesReceived(countries)
+//            case let .failure(error):
+//                self.handleCountriesError(error)
+//            }
+//        }
+        view?.refreshCountriesView()
+    }
+    
+    private func handleCountriesReceived(_ countries: [Country]) {
+        self.countries = countries
+        view?.refreshCountriesView()
+    }
+    
+    private func handleCountriesError(_ error: Error) {
+        print("მონაცემები ვერ ჩაიტვირთა") // FIXME SHOW ALERT
+    }
+    
+    func configure(cell: CountryCellView, forRow row: Int) {
+        let country = countries[row]
         
+        cell.configure(with: country)
     }
     
     func didSelect(row: Int) {
         
     }
-    
-    
 }

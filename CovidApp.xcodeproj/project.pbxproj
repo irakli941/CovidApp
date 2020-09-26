@@ -28,6 +28,10 @@
 		8F5FA51D251F30E600274C57 /* ListCountriesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA51C251F30E600274C57 /* ListCountriesPresenter.swift */; };
 		8F5FA520251F31B500274C57 /* ListCountriesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA51F251F31B500274C57 /* ListCountriesRouter.swift */; };
 		8F5FA523251F324A00274C57 /* ListCountriesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA522251F324A00274C57 /* ListCountriesConfigurator.swift */; };
+		8F5FA527251F3A1100274C57 /* UIViewController-Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA526251F3A1100274C57 /* UIViewController-Alert.swift */; };
+		8F5FA54B251F3BFD00274C57 /* CountryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA54A251F3BFD00274C57 /* CountryCollectionViewCell.swift */; };
+		8F5FA54E251F3E7D00274C57 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA54D251F3E7D00274C57 /* UIView+Constraints.swift */; };
+		8F5FA562251F494600274C57 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA561251F494600274C57 /* StatView.swift */; };
 		8FE61275251C6A9100769AD8 /* CountriesGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE61274251C6A9100769AD8 /* CountriesGateway.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +59,10 @@
 		8F5FA51C251F30E600274C57 /* ListCountriesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCountriesPresenter.swift; sourceTree = "<group>"; };
 		8F5FA51F251F31B500274C57 /* ListCountriesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCountriesRouter.swift; sourceTree = "<group>"; };
 		8F5FA522251F324A00274C57 /* ListCountriesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCountriesConfigurator.swift; sourceTree = "<group>"; };
+		8F5FA526251F3A1100274C57 /* UIViewController-Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController-Alert.swift"; sourceTree = "<group>"; };
+		8F5FA54A251F3BFD00274C57 /* CountryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F5FA54D251F3E7D00274C57 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
+		8F5FA561251F494600274C57 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		8FE61274251C6A9100769AD8 /* CountriesGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesGateway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				8F5FA4CF251F226600274C57 /* Result.swift */,
+				8F5FA526251F3A1100274C57 /* UIViewController-Alert.swift */,
+				8F5FA54D251F3E7D00274C57 /* UIView+Constraints.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -140,12 +150,22 @@
 		8F5FA514251F2BB900274C57 /* ListCountries */ = {
 			isa = PBXGroup;
 			children = (
+				8F5FA564251F4DCD00274C57 /* Views */,
 				8F5FA515251F2BE800274C57 /* ListContriesViewController.swift */,
 				8F5FA51C251F30E600274C57 /* ListCountriesPresenter.swift */,
 				8F5FA51F251F31B500274C57 /* ListCountriesRouter.swift */,
 				8F5FA522251F324A00274C57 /* ListCountriesConfigurator.swift */,
 			);
 			path = ListCountries;
+			sourceTree = "<group>";
+		};
+		8F5FA564251F4DCD00274C57 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8F5FA54A251F3BFD00274C57 /* CountryCollectionViewCell.swift */,
+				8F5FA561251F494600274C57 /* StatView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8FE61269251C696E00769AD8 /* Scenes */ = {
@@ -307,12 +327,16 @@
 				8F5FA516251F2BE800274C57 /* ListContriesViewController.swift in Sources */,
 				8F5FA4C2251F1C1500274C57 /* ApiClient.swift in Sources */,
 				8F5FA4CB251F214F00274C57 /* ApiCountriesGateway.swift in Sources */,
+				8F5FA54E251F3E7D00274C57 /* UIView+Constraints.swift in Sources */,
+				8F5FA562251F494600274C57 /* StatView.swift in Sources */,
 				8F5FA4D5251F290F00274C57 /* Summary.swift in Sources */,
 				8F5FA523251F324A00274C57 /* ListCountriesConfigurator.swift in Sources */,
 				8F5FA4C5251F1D2600274C57 /* ApiResponse.swift in Sources */,
 				8F5FA520251F31B500274C57 /* ListCountriesRouter.swift in Sources */,
+				8F5FA527251F3A1100274C57 /* UIViewController-Alert.swift in Sources */,
 				8F5FA4D8251F293200274C57 /* Global.swift in Sources */,
 				8F07103B251468CB00544661 /* AppDelegate.swift in Sources */,
+				8F5FA54B251F3BFD00274C57 /* CountryCollectionViewCell.swift in Sources */,
 				8F5FA4BF251F1B5700274C57 /* SummaryApiRequest.swift in Sources */,
 				8F07103D251468CB00544661 /* SceneDelegate.swift in Sources */,
 				8F071045251468CB00544661 /* CovidApp.xcdatamodeld in Sources */,
@@ -392,7 +416,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -446,7 +470,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
