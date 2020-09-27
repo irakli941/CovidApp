@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol CountryDetailsViewDelegate: class {
+    func subscribeClicked()
+}
+
 class CountryDetailsViewController: UIViewController {
     var configurator: CountryDetailsConfigurator!
     var presenter: CountryDetailsPresenter!
-    
+    weak var delegate: CountryDetailsViewDelegate?
     private let detailCellId = "countryDetailCellId"
     private lazy var countryListCollectionView: UICollectionView = {
         var config = UICollectionLayoutListConfiguration(appearance:.insetGrouped)
@@ -33,6 +37,20 @@ class CountryDetailsViewController: UIViewController {
         view.backgroundColor = UIColor.white
         configureCountryListCollectionView(anchorView: self.view)
         presenter.viewDidLoad()
+    }
+    
+    func configureFavouritesButton(isSubscribed: Bool) {
+        let image = UIImage(named: isSubscribed ? "subscribed" : "unsubscribed")
+        let barItem = UIBarButtonItem(image: image,
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(subscribeClicked))
+        self.navigationItem.rightBarButtonItem = barItem
+        view.layoutIfNeeded()
+    }
+    
+    @objc private func subscribeClicked() {
+        delegate?.subscribeClicked()
     }
     
     private func configureCountryListCollectionView(anchorView: UIView) {

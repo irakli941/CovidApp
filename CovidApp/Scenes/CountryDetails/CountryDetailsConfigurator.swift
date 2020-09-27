@@ -16,8 +16,14 @@ struct CountryDetailsConfigurator {
     }
     
     func configure(for viewController: CountryDetailsViewController) {
-        let presenter = CountryDetailsPresenterImpl(parameters: params,
+        let viewContext = CoreDataStack.sharedInstance.persistentContainer.viewContext
+        let notificationsGateway = CoreDataSubscriptionGateway(viewContext: viewContext)
+        let manageSubscriptionUsecase = ManageCountrySubscriptionsUsecaseImpl(notificationsGateway: notificationsGateway)
+        
+        let presenter = CountryDetailsPresenterImpl(manageSubscriptionUsecase: manageSubscriptionUsecase,
+                                                    parameters: params,
                                                     view: viewController)
+        viewController.delegate = presenter
         viewController.presenter = presenter
     }
 }

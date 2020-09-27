@@ -1,5 +1,5 @@
 //
-//  CountryDetailParameters.swift
+//  SubscribedCountry.swift
 //  CovidApp
 //
 //  Created by Irakli on 9/27/20.
@@ -8,7 +8,6 @@
 
 import Foundation
 
-struct CountryDetailParameters {
-    let country: Country
-    let isSubscribed: Bool
+struct SubscriptionCountry: Hashable {
+    let countryCode: String
 }

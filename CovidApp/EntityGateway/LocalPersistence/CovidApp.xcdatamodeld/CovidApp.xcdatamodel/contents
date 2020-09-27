@@ -16,6 +16,12 @@
         <attribute name="totalDeaths" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="totalRecovered" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="SubscriptionCountryCoreData" representedClassName="SubscriptionCountryCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="countryCode" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="SubscriptionsCoreData" representedClassName="SubscriptionsCoreData" syncable="YES" codeGenerationType="class">
+        <relationship name="countrySubscriptions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubscriptionCountryCoreData"/>
+    </entity>
     <entity name="SummaryCoreData" representedClassName="SummaryCoreData" syncable="YES" codeGenerationType="class">
         <relationship name="countries" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CountryCoreData"/>
         <relationship name="global" maxCount="1" deletionRule="Nullify" destinationEntity="GlobalCoreData"/>
@@ -23,6 +29,8 @@
     <elements>
         <element name="CountryCoreData" positionX="-63" positionY="-18" width="128" height="178"/>
         <element name="GlobalCoreData" positionX="-9" positionY="90" width="128" height="88"/>
+        <element name="SubscriptionCountryCoreData" positionX="-27" positionY="72" width="128" height="58"/>
         <element name="SummaryCoreData" positionX="9" positionY="108" width="128" height="73"/>
+        <element name="SubscriptionsCoreData" positionX="-27" positionY="72" width="128" height="58"/>
     </elements>
 </model>

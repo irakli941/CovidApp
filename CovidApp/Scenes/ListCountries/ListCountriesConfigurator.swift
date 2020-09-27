@@ -15,10 +15,12 @@ struct ListCountriesConfigurator {
         let viewContext = CoreDataStack.sharedInstance.persistentContainer.viewContext
         let coreDataSummaryGateway = CoreDataSummaryGateway(viewContext: viewContext)
         let summaryGateway = CacheSummaryGateWay(apiSummaryGateway: apiSummaryGateway, localPersistenceSummaryGateway: coreDataSummaryGateway)
-        let displayCountriesListUseCase = DisplayCountriesListUseCaseImpl(countriesGateway: summaryGateway)
+        let displayCountriesListUseCase = DisplayCountriesListUseCaseImpl(summaryGateway: summaryGateway)
+        let notificationsGateway = CoreDataSubscriptionGateway(viewContext: viewContext)
+        let fetchCountrySubscriptionsUseCase = FetchSubscriptionsUseCaseImpl(notificationsGateway: notificationsGateway)
         let router = ListCountriesRouterImpl(viewController: viewController)
         let presenter = ListCountriesPresenterImpl(view: viewController,
-                                                   displayCountriesListUseCase: displayCountriesListUseCase,
+                                                   displayCountriesListUseCase: displayCountriesListUseCase, fetchCountrySubscriptionsUseCase: fetchCountrySubscriptionsUseCase,
                                                    router: router)
         viewController.presenter = presenter
         viewController.delegegate = presenter

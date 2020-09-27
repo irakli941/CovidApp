@@ -9,7 +9,7 @@
 import Foundation
 
 protocol ListCountriesRouter: class {
-    func presentDetails(for country: Country)
+    func presentDetails(for country: Country, isSubscribed: Bool)
 }
 
 class ListCountriesRouterImpl: ListCountriesRouter {
@@ -20,8 +20,8 @@ class ListCountriesRouterImpl: ListCountriesRouter {
         self.viewController = viewController
     }
     
-    func presentDetails(for country: Country) {
-        let params = CountryDetailParameters(country: country)
+    func presentDetails(for country: Country, isSubscribed: Bool) {
+        let params = CountryDetailParameters(country: country, isSubscribed: isSubscribed)
         let countryDetailsViewController = CountryDetailsViewController()
         let countryDetailsConfigurator = CountryDetailsConfigurator(params: params)
         

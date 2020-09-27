@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "unsubscribed.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

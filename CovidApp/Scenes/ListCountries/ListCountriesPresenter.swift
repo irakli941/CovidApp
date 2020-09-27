@@ -25,19 +25,22 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     
     private weak var view: ListCountriesView?
     private let displayCountriesListUseCase: DisplayCountriesListUseCase
+    private let fetchCountrySubscriptionsUseCase: FetchSubscriptionsUseCase
     internal let router: ListCountriesRouter //FIXME private
     private let homePage = "https://covid19api.com/"
     private var countries = [Country]() { didSet { view?.refreshCountriesView() } }
-    
+    private var subscribedCountries = Set<SubscriptionCountry>() 
     var numberOfCountries: Int {
         return countries.count
     }
     
     init(view: ListCountriesView,
          displayCountriesListUseCase: DisplayCountriesListUseCase,
+         fetchCountrySubscriptionsUseCase: FetchSubscriptionsUseCase,
          router: ListCountriesRouter) {
         self.view = view
         self.displayCountriesListUseCase = displayCountriesListUseCase
+        self.fetchCountrySubscriptionsUseCase = fetchCountrySubscriptionsUseCase
         self.router = router
     }
     
@@ -49,6 +52,20 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
                 self.handleCountriesReceived(countries)
             case let .failure(error):
                 self.handleCountriesError(error)
+            }
+        }
+        
+        loadNotifications()
+    }
+    
+    private func loadNotifications() {
+        fetchCountrySubscriptionsUseCase.fetchCountrySubscriptions { (result) in
+            switch result {
+            case let .success(subscribedCountries):
+                print(subscribedCountries)
+                self.subscribedCountries = subscribedCountries
+            case let .failure(error):
+                print(error)
             }
         }
     }
@@ -72,7 +89,16 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     }
     
     func didSelect(row: Int) {
-        router.presentDetails(for: countries[row])
+        router.presentDetails(for: countries[row], isSubscribed: isSubscribed(to: countries[row]))
+    }
+    
+    private func isSubscribed(to country: Country) -> Bool {
+        for child in self.subscribedCountries {
+            if child.countryCode == country.code {
+                return true
+            }
+        }
+        return false
     }
 }
 

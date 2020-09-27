@@ -15,19 +15,18 @@ protocol DisplayCountriesListUseCase {
 }
 
 class DisplayCountriesListUseCaseImpl: DisplayCountriesListUseCase {
-    let countriesGateway: SummaryGateway
+    let summaryGateway: SummaryGateway
     
-    init(countriesGateway: SummaryGateway) {
-        self.countriesGateway = countriesGateway
+    init(summaryGateway: SummaryGateway) {
+        self.summaryGateway = summaryGateway
     }
     
     func displayCountries(completion: @escaping DisplayCountriesListCompletionHandler) {
-        self.countriesGateway.fetchSummary { (result) in
+        self.summaryGateway.fetchSummary { (result) in
             switch result {
             case let .success(response):
                 completion(.success(response.countries))
             case let .failure(error):
-                print(error)
                 completion(.failure(error))
             }
         }
