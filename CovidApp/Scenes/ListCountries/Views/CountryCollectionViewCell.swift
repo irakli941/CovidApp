@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CountryCellView {
+protocol CountryCellView { // FIXME rename or delete
     func configure(with country: Country) 
 }
 

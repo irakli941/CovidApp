@@ -13,7 +13,7 @@ struct SummaryApiRequest: ApiRequest {
         let url: URL! = URL(string: "https://api.covid19api.com/summary")
         var request = URLRequest(url: url)
         request.httpMethod = HttpMehod.get.rawValue
-        request.setValue("44013289-3cf5-4f99-96f7-f26a1e88923e", forHTTPHeaderField: "X-Access-Token")
+        request.setValue("44013289-3cf5-4f99-96f7-f26a1e88923e", forHTTPHeaderField: "X-Access-Token") // FIXME move api key
         return request
     }
 }

@@ -8,17 +8,24 @@
 
 import Foundation
 
-protocol CountryDetailsView {
-    
+protocol CountryDetailsView: class {
+    func refreshDetailsView()
 }
 
 protocol CountryDetailsPresenter {
     func viewDidLoad()
+    var numberOfStats: Int { get }
+    func configure(cell: CountryDetailCellView,
+                   forRow row: Int)
 }
 
 class CountryDetailsPresenterImpl: CountryDetailsPresenter {
+    
     let parameters: CountryDetailParameters
-    let view: CountryDetailsView
+    private weak var view: CountryDetailsView?
+    var numberOfStats: Int { return stats.count }
+    
+    private var stats:[(String, String)] = [] { didSet { view?.refreshDetailsView() } }
     
     init(parameters: CountryDetailParameters,
          view: CountryDetailsView) {
@@ -27,6 +34,16 @@ class CountryDetailsPresenterImpl: CountryDetailsPresenter {
     }
     
     func viewDidLoad() {
-        print(parameters)
+        updateStats(for: parameters.country)
+    }
+    
+    private func updateStats(for country: Country) {
+        self.stats = country.displayableProperties()
+    }
+    
+    func configure(cell: CountryDetailCellView, forRow row: Int) {
+        let stat = stats[row]
+        let viewModel = CountryDetailCellViewModel(stat: stat.0, quantity: stat.1)
+        cell.configure(with: viewModel)
     }
 }

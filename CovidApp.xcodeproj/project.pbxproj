@@ -33,6 +33,8 @@
 		8F6F234425206C46007065BB /* SummaryCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F234325206C46007065BB /* SummaryCoreData.swift */; };
 		8F6F235025207EBE007065BB /* CountryDetailParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F234F25207EBE007065BB /* CountryDetailParameters.swift */; };
 		8F6F235325207EEA007065BB /* CountryDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F235225207EEA007065BB /* CountryDetailsConfigurator.swift */; };
+		8F6F235F2520F201007065BB /* CountryDetailCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F235E2520F201007065BB /* CountryDetailCellView.swift */; };
+		8F6F23632520F352007065BB /* CountryDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F23622520F352007065BB /* CountryDetailCellViewModel.swift */; };
 		8FB1C8BB251F579700F36241 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8BA251F579700F36241 /* Double+Formatting.swift */; };
 		8FB1C8CE251F662900F36241 /* GlobalCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8CD251F662900F36241 /* GlobalCoreData.swift */; };
 		8FB1C8D4251F67FB00F36241 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8D3251F67FB00F36241 /* CoreDataStack.swift */; };
@@ -73,6 +75,8 @@
 		8F6F234325206C46007065BB /* SummaryCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCoreData.swift; sourceTree = "<group>"; };
 		8F6F234F25207EBE007065BB /* CountryDetailParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailParameters.swift; sourceTree = "<group>"; };
 		8F6F235225207EEA007065BB /* CountryDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsConfigurator.swift; sourceTree = "<group>"; };
+		8F6F235E2520F201007065BB /* CountryDetailCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailCellView.swift; sourceTree = "<group>"; };
+		8F6F23622520F352007065BB /* CountryDetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailCellViewModel.swift; sourceTree = "<group>"; };
 		8FB1C8BA251F579700F36241 /* Double+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
 		8FB1C8CD251F662900F36241 /* GlobalCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalCoreData.swift; sourceTree = "<group>"; };
 		8FB1C8D3251F67FB00F36241 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -183,9 +187,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8F6F235D2520F1F9007065BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8F6F235E2520F201007065BB /* CountryDetailCellView.swift */,
+				8F6F23622520F352007065BB /* CountryDetailCellViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8FB1C8C2251F5FFC00F36241 /* CountryDetails */ = {
 			isa = PBXGroup;
 			children = (
+				8F6F235D2520F1F9007065BB /* Views */,
 				8FB1C8E9251F80CA00F36241 /* CountryDetailsViewController.swift */,
 				8FB1C8EC251F80F200F36241 /* CountryDetailsPresenter.swift */,
 				8F6F234F25207EBE007065BB /* CountryDetailParameters.swift */,
@@ -400,12 +414,14 @@
 				8F6F234125206A6E007065BB /* CountryCoreData.swift in Sources */,
 				8F5FA4D5251F290F00274C57 /* Summary.swift in Sources */,
 				8FB1C8EA251F80CA00F36241 /* CountryDetailsViewController.swift in Sources */,
+				8F6F235F2520F201007065BB /* CountryDetailCellView.swift in Sources */,
 				8F5FA523251F324A00274C57 /* ListCountriesConfigurator.swift in Sources */,
 				8F6F235325207EEA007065BB /* CountryDetailsConfigurator.swift in Sources */,
 				8F5FA4C5251F1D2600274C57 /* ApiResponse.swift in Sources */,
 				8F5FA520251F31B500274C57 /* ListCountriesRouter.swift in Sources */,
 				8FB1C8CE251F662900F36241 /* GlobalCoreData.swift in Sources */,
 				8F5FA527251F3A1100274C57 /* UIViewController-Alert.swift in Sources */,
+				8F6F23632520F352007065BB /* CountryDetailCellViewModel.swift in Sources */,
 				8F5FA4D8251F293200274C57 /* Global.swift in Sources */,
 				8F07103B251468CB00544661 /* AppDelegate.swift in Sources */,
 				8FB1C8D4251F67FB00F36241 /* CoreDataStack.swift in Sources */,

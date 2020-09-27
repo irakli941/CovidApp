@@ -26,7 +26,7 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     private let displayCountriesListUseCase: DisplayCountriesListUseCase
     internal let router: ListCountriesRouter //FIXME private
     
-    private var countries = [Country]()
+    private var countries = [Country]() { didSet { view?.refreshCountriesView() } }
     
     var numberOfCountries: Int {
         return countries.count
@@ -53,7 +53,6 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     
     private func handleCountriesReceived(_ countries: [Country]) {
         self.countries = countries
-        view?.refreshCountriesView()
     }
     
     private func handleCountriesError(_ error: Error) {

@@ -18,7 +18,6 @@ struct Country: Codable {
     let newRecovered: Int?
     let totalDeaths: Int?
     let newDeaths: Int?
-    
     public static let Mock: Country = Country(name: "Georgia",
                                               code: "GE",
                                               slug: "georgia",
@@ -41,5 +40,23 @@ extension Country {
         case newRecovered = "NewRecovered"
         case totalDeaths = "TotalDeaths"
         case newDeaths = "NewDeaths"
+        
+    }
+}
+extension Country
+{
+    func displayableProperties() -> [(String, String)] {
+        var properties: [(String, String)] = []
+        let mirror = Mirror(reflecting: self)
+        for child in mirror.children {
+            if let label = child.label {
+                if let value = child.value as? String {
+                    properties.append((label, value))
+                } else if let value = child.value as? Int {
+                    properties.append((label, String(value)))
+                }
+            }
+        }
+        return properties
     }
 }
