@@ -16,7 +16,7 @@ protocol LocalPersistenceNotificationsGateway: NotificationsGateway {
 class CoreDataSubscriptionGateway: LocalPersistenceNotificationsGateway {
     
     let viewContext: NSManagedObjectContextProtocol
-    private var fetchedSubscriptions: SubscriptionsCoreData?
+    private var fetchedSubscriptionsCoreData: SubscriptionsCoreData?
     init(viewContext: NSManagedObjectContextProtocol) {
         self.viewContext = viewContext
     }
@@ -27,9 +27,9 @@ class CoreDataSubscriptionGateway: LocalPersistenceNotificationsGateway {
             return
         }
         
-        if fetchedSubscriptions != nil {
+        if fetchedSubscriptionsCoreData != nil {
             coreDataSubscriptionCountry.configure(with: country)
-            fetchedSubscriptions!.addToCountrySubscriptions(coreDataSubscriptionCountry)
+            fetchedSubscriptionsCoreData!.addToCountrySubscriptions(coreDataSubscriptionCountry)
             do {
                 try viewContext.save()
                 completion(.success(coreDataSubscriptionCountry.subscriptionCountry))
@@ -42,32 +42,35 @@ class CoreDataSubscriptionGateway: LocalPersistenceNotificationsGateway {
     }
     
     func unsubscribe(from country: SubscriptionCountry,  completion: @escaping unsubscribeCompletionHandler) {
-        guard let coreDataSubscriptionCountry = viewContext.addEntity(withType: SubscriptionCountryCoreData.self) else {
-            completion(.failure(CoreError(message: "Failed adding the Subscription in the data base")))
-            return
-        }
         
-        if fetchedSubscriptions != nil {
-            coreDataSubscriptionCountry.configure(with: country)
-            fetchedSubscriptions?.removeFromCountrySubscriptions(coreDataSubscriptionCountry)
-            do {
-                try viewContext.save()
-                completion(.success(coreDataSubscriptionCountry.subscriptionCountry))
-            } catch {
-                completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
+        if fetchedSubscriptionsCoreData != nil {
+            let subscriptionCountriesCoreData = fetchedSubscriptionsCoreData?.countrySubscriptions as! Set<SubscriptionCountryCoreData>
+            for sub in subscriptionCountriesCoreData {
+                if sub.subscriptionCountry.countryCode == country.countryCode {
+                    fetchedSubscriptionsCoreData?.removeFromCountrySubscriptions(sub)
+                    do {
+                        viewContext.delete(sub)
+                        try viewContext.save()
+                        completion(.success(sub.subscriptionCountry))
+                    } catch {
+                        completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
+                    }
+                }
             }
+            
         } else {
             completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
         }
     }
     
     func fetchSubscribedCountries(completion: @escaping FetchSubscribedCountriesCompletionHandler) {
+        
         if let subscriptionsCoreData = try? viewContext.allEntities(withType: SubscriptionsCoreData.self) {
             if subscriptionsCoreData.count == 1 {
-                self.fetchedSubscriptions = subscriptionsCoreData.first!
+                self.fetchedSubscriptionsCoreData = subscriptionsCoreData.first!
                 var result:Set<SubscriptionCountry> = []
                 
-                if let countrySubscriptions = self.fetchedSubscriptions?.countrySubscriptions {
+                if let countrySubscriptions = self.fetchedSubscriptionsCoreData?.countrySubscriptions {
                     for child in countrySubscriptions {
                         result.update(with: (child as! SubscriptionCountryCoreData).subscriptionCountry)
                     }
