@@ -6,10 +6,11 @@
 //  Copyright © 2020 Irakli Shelia. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol ListCountriesView: class {
     func refreshCountriesView()
+    func setNavigationBar(title: String)
 }
 
 protocol ListCountriesPresenter {
@@ -25,7 +26,7 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     private weak var view: ListCountriesView?
     private let displayCountriesListUseCase: DisplayCountriesListUseCase
     internal let router: ListCountriesRouter //FIXME private
-    
+    private let homePage = "https://covid19api.com/"
     private var countries = [Country]() { didSet { view?.refreshCountriesView() } }
     
     var numberOfCountries: Int {
@@ -41,6 +42,7 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     }
     
     func viewDidLoad() {
+        setNavigationBar(title: "Covid-19 Statistics")
         displayCountriesListUseCase.displayCountries { (result) in
             switch result {
             case let .success(countries):
@@ -50,7 +52,11 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
             }
         }
     }
-
+    
+    private func setNavigationBar(title: String) {
+        view?.setNavigationBar(title: title)
+    }
+    
     private func handleCountriesReceived(_ countries: [Country]) {
         self.countries = countries
     }
@@ -67,5 +73,12 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     
     func didSelect(row: Int) {
         router.presentDetails(for: countries[row])
+    }
+}
+
+extension ListCountriesPresenterImpl: ListCountriesViewDelegate {
+    func webNavigationItemClicked() {
+        guard let url = URL(string: homePage) else { return }
+        UIApplication.shared.open(url)
     }
 }

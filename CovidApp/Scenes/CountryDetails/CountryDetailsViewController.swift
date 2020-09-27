@@ -16,12 +16,14 @@ class CountryDetailsViewController: UIViewController {
     private lazy var countryListCollectionView: UICollectionView = {
         var config = UICollectionLayoutListConfiguration(appearance:.insetGrouped)
         let layout = UICollectionViewCompositionalLayout.list(using: config)
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: CGRect.zero,
+                                              collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
-        collectionView.register(CountryDetailCellView.self, forCellWithReuseIdentifier: detailCellId)
+        collectionView.register(CountryDetailCellView.self,
+                                forCellWithReuseIdentifier: detailCellId)
         return collectionView
     }()
     
@@ -52,12 +54,15 @@ extension CountryDetailsViewController: CountryDetailsView {
 // MARK: UICollectionViewDataSource
 
 extension CountryDetailsViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return presenter.numberOfStats
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId, for: indexPath) as! CountryDetailCellView
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId,
+                                                      for: indexPath) as! CountryDetailCellView
         presenter.configure(cell: cell, forRow: indexPath.row)
         return cell
     }

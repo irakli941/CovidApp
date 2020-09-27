@@ -40,10 +40,12 @@ class CountryDetailsPresenterImpl: CountryDetailsPresenter {
     private func updateStats(for country: Country) {
         self.stats = country.displayableProperties()
     }
-
-    func configure(cell: CountryDetailCellView, forRow row: Int) {
+    
+    func configure(cell: CountryDetailCellView,
+                   forRow row: Int) {
         let stat = stats[row]
-        let viewModel = CountryDetailCellViewModel(stat: stat.0, quantity: stat.1)
+        let viewModel = CountryDetailCellViewModel(stat: stat.0,
+                                                   quantity: stat.1)
         cell.configure(with: viewModel)
     }
 }

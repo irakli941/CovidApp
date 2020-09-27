@@ -21,5 +21,6 @@ struct ListCountriesConfigurator {
                                                    displayCountriesListUseCase: displayCountriesListUseCase,
                                                    router: router)
         viewController.presenter = presenter
+        viewController.delegegate = presenter
     }
 }

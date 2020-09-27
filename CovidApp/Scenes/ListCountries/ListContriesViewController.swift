@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol ListCountriesViewDelegate {
+    func webNavigationItemClicked()
+}
+
 class ListCountriesViewController: UIViewController {
     
     var configurator = ListCountriesConfigurator()
     var presenter: ListCountriesPresenter!
+    var delegegate: ListCountriesViewDelegate?
     private let countryCellId = "CountryViewCell"
     
     private lazy var countryListCollectionView: UICollectionView = {
@@ -41,6 +46,10 @@ class ListCountriesViewController: UIViewController {
         countryListCollectionView.bottom(toView: anchorView)
         countryListCollectionView.right(toView: anchorView)
     }
+    
+    @objc func webNavigationItemClicked() {
+        delegegate?.webNavigationItemClicked()
+    }
 }
 
 extension ListCountriesViewController: ListCountriesView {
@@ -48,17 +57,29 @@ extension ListCountriesViewController: ListCountriesView {
         countryListCollectionView.reloadData()
         view.layoutIfNeeded()
     }
+    
+    func setNavigationBar(title: String) {
+        navigationController?.navigationBar.topItem?.title = title
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "www"),
+                                                                                          style: .plain,
+                                                                                          target: self,
+                                                                                          action: #selector(webNavigationItemClicked))
+        view.layoutIfNeeded()
+    }
 }
 
 // MARK: UICollectionViewDataSource
 
 extension ListCountriesViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return presenter.numberOfCountries
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCellId, for: indexPath) as! CountryCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: countryCellId,
+                                                      for: indexPath) as! CountryCollectionViewCell
         presenter.configure(cell: cell, forRow: indexPath.row)
         return cell
     }
@@ -68,7 +89,8 @@ extension ListCountriesViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegateFlowLayout
 
 extension ListCountriesViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         presenter.didSelect(row: indexPath.row)
     }
 }
