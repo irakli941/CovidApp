@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8F07103B251468CB00544661 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F07103A251468CB00544661 /* AppDelegate.swift */; };
-		8F07103F251468CB00544661 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F07103E251468CB00544661 /* ViewController.swift */; };
 		8F071042251468CB00544661 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F071040251468CB00544661 /* Main.storyboard */; };
 		8F071045251468CB00544661 /* CovidApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F071043251468CB00544661 /* CovidApp.xcdatamodeld */; };
 		8F071047251468CD00544661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F071046251468CD00544661 /* Assets.xcassets */; };
@@ -31,19 +30,22 @@
 		8F5FA54B251F3BFD00274C57 /* CountryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA54A251F3BFD00274C57 /* CountryCollectionViewCell.swift */; };
 		8F5FA54E251F3E7D00274C57 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA54D251F3E7D00274C57 /* UIView+Constraints.swift */; };
 		8F5FA562251F494600274C57 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA561251F494600274C57 /* StatView.swift */; };
+		8F6F234125206A6E007065BB /* CountryCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F234025206A6E007065BB /* CountryCoreData.swift */; };
+		8F6F234425206C46007065BB /* SummaryCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F234325206C46007065BB /* SummaryCoreData.swift */; };
 		8FB1C8BB251F579700F36241 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8BA251F579700F36241 /* Double+Formatting.swift */; };
-		8FB1C8CE251F662900F36241 /* CoreDataCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8CD251F662900F36241 /* CoreDataCountry.swift */; };
+		8FB1C8CE251F662900F36241 /* GlobalCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8CD251F662900F36241 /* GlobalCoreData.swift */; };
 		8FB1C8D4251F67FB00F36241 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8D3251F67FB00F36241 /* CoreDataStack.swift */; };
 		8FB1C8D8251F694400F36241 /* NSManagedObjectContext-Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8D7251F694400F36241 /* NSManagedObjectContext-Utils.swift */; };
 		8FB1C8DC251F6A5100F36241 /* LocalPersistenceSummaryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8DB251F6A5100F36241 /* LocalPersistenceSummaryGateway.swift */; };
 		8FB1C8E2251F77C900F36241 /* CacheSummaryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8E1251F77C900F36241 /* CacheSummaryGateway.swift */; };
+		8FB1C8EA251F80CA00F36241 /* CountryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8E9251F80CA00F36241 /* CountryDetailsViewController.swift */; };
+		8FB1C8ED251F80F200F36241 /* CountryDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8EC251F80F200F36241 /* CountryDetailsPresenter.swift */; };
 		8FE61275251C6A9100769AD8 /* SummaryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE61274251C6A9100769AD8 /* SummaryGateway.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8F071037251468CB00544661 /* CovidApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CovidApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F07103A251468CB00544661 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8F07103E251468CB00544661 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8F071041251468CB00544661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8F071044251468CB00544661 /* CovidApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CovidApp.xcdatamodel; sourceTree = "<group>"; };
 		8F071046251468CD00544661 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,12 +69,16 @@
 		8F5FA54A251F3BFD00274C57 /* CountryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F5FA54D251F3E7D00274C57 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		8F5FA561251F494600274C57 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
+		8F6F234025206A6E007065BB /* CountryCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCoreData.swift; sourceTree = "<group>"; };
+		8F6F234325206C46007065BB /* SummaryCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCoreData.swift; sourceTree = "<group>"; };
 		8FB1C8BA251F579700F36241 /* Double+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
-		8FB1C8CD251F662900F36241 /* CoreDataCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCountry.swift; sourceTree = "<group>"; };
+		8FB1C8CD251F662900F36241 /* GlobalCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalCoreData.swift; sourceTree = "<group>"; };
 		8FB1C8D3251F67FB00F36241 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		8FB1C8D7251F694400F36241 /* NSManagedObjectContext-Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext-Utils.swift"; sourceTree = "<group>"; };
 		8FB1C8DB251F6A5100F36241 /* LocalPersistenceSummaryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPersistenceSummaryGateway.swift; sourceTree = "<group>"; };
 		8FB1C8E1251F77C900F36241 /* CacheSummaryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheSummaryGateway.swift; sourceTree = "<group>"; };
+		8FB1C8E9251F80CA00F36241 /* CountryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewController.swift; sourceTree = "<group>"; };
+		8FB1C8EC251F80F200F36241 /* CountryDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsPresenter.swift; sourceTree = "<group>"; };
 		8FE61274251C6A9100769AD8 /* SummaryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryGateway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,13 +115,9 @@
 				8F5FA4CE251F225500274C57 /* Helpers */,
 				8FE6126A251C697600769AD8 /* Core */,
 				8FE6126C251C698B00769AD8 /* EntityGateway */,
-				8F07104B251468CD00544661 /* Info.plist */,
-				8F071048251468CD00544661 /* LaunchScreen.storyboard */,
-				8F071040251468CB00544661 /* Main.storyboard */,
 				8FE6126D251C699200769AD8 /* Resources */,
 				8FE61269251C696E00769AD8 /* Scenes */,
 				8FE6126B251C698100769AD8 /* SupportingFiles */,
-				8F07103E251468CB00544661 /* ViewController.swift */,
 			);
 			path = CovidApp;
 			sourceTree = "<group>";
@@ -182,6 +184,8 @@
 		8FB1C8C2251F5FFC00F36241 /* CountryDetails */ = {
 			isa = PBXGroup;
 			children = (
+				8FB1C8E9251F80CA00F36241 /* CountryDetailsViewController.swift */,
+				8FB1C8EC251F80F200F36241 /* CountryDetailsPresenter.swift */,
 			);
 			path = CountryDetails;
 			sourceTree = "<group>";
@@ -201,7 +205,9 @@
 		8FB1C8D1251F666D00F36241 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				8FB1C8CD251F662900F36241 /* CoreDataCountry.swift */,
+				8FB1C8CD251F662900F36241 /* GlobalCoreData.swift */,
+				8F6F234025206A6E007065BB /* CountryCoreData.swift */,
+				8F6F234325206C46007065BB /* SummaryCoreData.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -244,6 +250,7 @@
 		8FE6126B251C698100769AD8 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				8F07104B251468CD00544661 /* Info.plist */,
 				8F07103A251468CB00544661 /* AppDelegate.swift */,
 			);
 			path = SupportingFiles;
@@ -261,6 +268,8 @@
 		8FE6126D251C699200769AD8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8F071048251468CD00544661 /* LaunchScreen.storyboard */,
+				8F071040251468CB00544661 /* Main.storyboard */,
 				8F071046251468CD00544661 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -377,18 +386,21 @@
 				8F5FA4D0251F226600274C57 /* Result.swift in Sources */,
 				8F5FA4C8251F1FCC00274C57 /* JSON.swift in Sources */,
 				8F5FA51A251F2C7100274C57 /* DisplayCountriesList.swift in Sources */,
+				8FB1C8ED251F80F200F36241 /* CountryDetailsPresenter.swift in Sources */,
 				8F5FA51D251F30E600274C57 /* ListCountriesPresenter.swift in Sources */,
-				8F07103F251468CB00544661 /* ViewController.swift in Sources */,
 				8F5FA516251F2BE800274C57 /* ListContriesViewController.swift in Sources */,
 				8F5FA4C2251F1C1500274C57 /* ApiClient.swift in Sources */,
 				8F5FA4CB251F214F00274C57 /* ApiSummaryGateway.swift in Sources */,
 				8F5FA54E251F3E7D00274C57 /* UIView+Constraints.swift in Sources */,
 				8F5FA562251F494600274C57 /* StatView.swift in Sources */,
+				8F6F234425206C46007065BB /* SummaryCoreData.swift in Sources */,
+				8F6F234125206A6E007065BB /* CountryCoreData.swift in Sources */,
 				8F5FA4D5251F290F00274C57 /* Summary.swift in Sources */,
+				8FB1C8EA251F80CA00F36241 /* CountryDetailsViewController.swift in Sources */,
 				8F5FA523251F324A00274C57 /* ListCountriesConfigurator.swift in Sources */,
 				8F5FA4C5251F1D2600274C57 /* ApiResponse.swift in Sources */,
 				8F5FA520251F31B500274C57 /* ListCountriesRouter.swift in Sources */,
-				8FB1C8CE251F662900F36241 /* CoreDataCountry.swift in Sources */,
+				8FB1C8CE251F662900F36241 /* GlobalCoreData.swift in Sources */,
 				8F5FA527251F3A1100274C57 /* UIViewController-Alert.swift in Sources */,
 				8F5FA4D8251F293200274C57 /* Global.swift in Sources */,
 				8F07103B251468CB00544661 /* AppDelegate.swift in Sources */,
@@ -546,7 +558,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UZ4RRBQ322;
-				INFOPLIST_FILE = CovidApp/Info.plist;
+				INFOPLIST_FILE = CovidApp/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -564,7 +576,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UZ4RRBQ322;
-				INFOPLIST_FILE = CovidApp/Info.plist;
+				INFOPLIST_FILE = CovidApp/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

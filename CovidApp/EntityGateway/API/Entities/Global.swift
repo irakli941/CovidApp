@@ -8,10 +8,14 @@
 
 import Foundation
 
-struct Global: Decodable {
+struct Global: Codable {
     let totalConfirmed: Int?
     let totalRecovered: Int?
     let totalDeaths: Int?
+    
+    public static let Mock: Global = Global(totalConfirmed: 99999,
+                                            totalRecovered: 88888,
+                                            totalDeaths: 11111)
 }
 
 extension Global {

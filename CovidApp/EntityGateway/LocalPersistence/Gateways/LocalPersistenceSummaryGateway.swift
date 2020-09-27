@@ -21,27 +21,47 @@ class CoreDataSummaryGateway: LocalPersistenceSummaryGateway {
     }
     
     func save(summary: Summary) {
-        // FIXME implement
+        
+        guard let coreDataGlobal = viewContext.addEntity(withType: GlobalCoreData.self) else {
+            print((CoreError(message: "Failed adding the summary in the data base")))
+            return
+        }
+        
+        var coreDataCountries:[CountryCoreData] = []
+        for country in summary.countries {
+            guard let coreDataCountry = viewContext.addEntity(withType: CountryCoreData.self) else {
+                print((CoreError(message: "Failed adding the summary in the data base")))
+                return
+            }
+            coreDataCountry.configure(with: country)
+            coreDataCountries.append(coreDataCountry)
+        }
+        
         guard let coreDataSummary = viewContext.addEntity(withType: SummaryCoreData.self) else {
             print((CoreError(message: "Failed adding the summary in the data base")))
             return
         }
+        
+        coreDataGlobal.configure(with: summary.global)
+        coreDataSummary.configure(with: coreDataGlobal, countries: coreDataCountries)
+        
         do {
             try viewContext.save()
         } catch {
-            viewContext.delete(coreDataSummary)
-            print((CoreError(message: "Failed adding the summary in the data base")))
+            print((CoreError(message: "Failed to save enity in the data base")))
         }
     }
     
     func fetchSummary(completion: @escaping (FetchSummaryCompletionHandler)) {
         if let coreDataSummary = try? viewContext.allEntities(withType: SummaryCoreData.self) {
-            let countries = coreDataSummary.first?.mutableArrayValue(forKey: "countries") as! [Country]
-            let global = coreDataSummary.first?.value(forKey: "global") as! Global
+            let countriesCoreData = coreDataSummary.first?.mutableOrderedSetValue(forKey: "countries")
+            let globalCountryData = coreDataSummary.first?.value(forKey: "global") as! GlobalCoreData
+            let global = globalCountryData.global
+            let countries = (countriesCoreData?.array as! [CountryCoreData]).map { $0.country }
             let summary = Summary(global: global, countries: countries)
             completion(.success(summary))
         } else {
-            completion(.failure(CoreError(message: "Failed retrieving summary the data base")))
+            completion(.failure(CoreError(message: "Failed retrieving summary from the data base")))
         }
     }
 }

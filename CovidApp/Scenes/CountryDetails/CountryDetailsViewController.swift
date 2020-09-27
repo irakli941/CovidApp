@@ -1,20 +1,15 @@
 //
-//  ViewController.swift
+//  CountryDetailsViewController.swift
 //  CovidApp
 //
-//  Created by Irakli on 9/18/20.
+//  Created by Irakli on 9/26/20.
 //  Copyright © 2020 Irakli Shelia. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class CountryDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
-

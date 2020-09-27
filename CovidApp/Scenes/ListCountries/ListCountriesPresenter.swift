@@ -27,9 +27,7 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     private let displayCountriesListUseCase: DisplayCountriesListUseCase
     internal let router: ListCountriesRouter //FIXME private
     
-    private var countries = [Country.Mock]
-    
-//    private var countries = [Country]()
+    private var countries = [Country]()
     
     var numberOfCountries: Int {
         return countries.count
@@ -44,15 +42,14 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     }
     
     func viewDidLoad() {
-//        displayCountriesListUseCase.displayCountries { (result) in
-//            switch result {
-//            case let .success(countries):
-//                self.handleCountriesReceived(countries)
-//            case let .failure(error):
-//                self.handleCountriesError(error)
-//            }
-//        }
-        view?.refreshCountriesView()
+        displayCountriesListUseCase.displayCountries { (result) in
+            switch result {
+            case let .success(countries):
+                self.handleCountriesReceived(countries)
+            case let .failure(error):
+                self.handleCountriesError(error)
+            }
+        }
     }
     
     private func handleCountriesReceived(_ countries: [Country]) {

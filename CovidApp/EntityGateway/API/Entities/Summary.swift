@@ -8,9 +8,12 @@
 
 import Foundation
 
-struct Summary: Decodable {
+struct Summary: Codable {
     let global: Global
     let countries: [Country]
+    
+    public static let Mock: Summary = Summary(global: Global.Mock,
+                                              countries: [Country.Mock])
 }
 
 extension Summary {

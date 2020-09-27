@@ -38,7 +38,6 @@ class ApiClientImplementation: ApiClient {
         urlSession = URLSession(configuration: urlSessionConfiguration, delegate: nil, delegateQueue: completionHandlerQueue)
     }
     
-    // This should be used mainly for testing purposes
     init(urlSession: URLSessionProtocol) {
         self.urlSession = urlSession
     }
