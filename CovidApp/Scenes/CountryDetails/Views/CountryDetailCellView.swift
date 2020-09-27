@@ -9,6 +9,16 @@
 import UIKit
 
 class CountryDetailCellView: UICollectionViewCell {
+    
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "stat")?.withRenderingMode(.alwaysTemplate))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = UIColor.systemBlue
+        imageView.width(equalTo: 32)
+        return imageView
+    }()
+    
     private let statLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -19,19 +29,29 @@ class CountryDetailCellView: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: CGRect.zero)
-        configureStatLabel()
+        configureIconImageView(anchorView: self)
+        configureStatLabel(leftAnchorView: iconImageView,
+                           remainingAnchorViews: self)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configureStatLabel() {
+    private func configureStatLabel(leftAnchorView: UIView,
+                                    remainingAnchorViews: UIView) {
         addSubview(statLabel)
-        statLabel.top(toView: self)
-        statLabel.left(toView: self)
-        statLabel.right(toView: self)
-        statLabel.bottom(toView: self)
+        statLabel.relativeLeft(toView: leftAnchorView, constant: 10)
+        statLabel.top(toView: remainingAnchorViews)
+        statLabel.right(toView: remainingAnchorViews)
+        statLabel.bottom(toView: remainingAnchorViews)
+    }
+    
+    private func configureIconImageView(anchorView: UIView) {
+        addSubview(iconImageView)
+        iconImageView.left(toView: anchorView)
+        iconImageView.top(toView: anchorView, constant: 0)
+        iconImageView.bottom(toView: anchorView, constant: 5)
     }
     
     func configure(with viewModel: CountryDetailCellViewModel) {

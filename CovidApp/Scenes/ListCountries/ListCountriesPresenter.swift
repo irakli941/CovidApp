@@ -50,7 +50,7 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
             }
         }
     }
-    
+
     private func handleCountriesReceived(_ countries: [Country]) {
         self.countries = countries
     }

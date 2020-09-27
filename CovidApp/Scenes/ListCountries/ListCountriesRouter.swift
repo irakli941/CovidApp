@@ -25,10 +25,7 @@ class ListCountriesRouterImpl: ListCountriesRouter {
         let countryDetailsViewController = CountryDetailsViewController()
         let countryDetailsConfigurator = CountryDetailsConfigurator(params: params)
         
-        
-        
         countryDetailsViewController.configurator = countryDetailsConfigurator
         viewController?.navigationController?.pushViewController(countryDetailsViewController, animated: true)
-
     }
 }

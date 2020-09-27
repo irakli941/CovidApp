@@ -66,17 +66,17 @@ class CountryCollectionViewCell: UICollectionViewCell, CountryCellView {
     
     private func configureCountryLabel(anchorView: UIView) {
         addSubview(countryNameLabel)
-        countryNameLabel.top(toView: anchorView)
+        countryNameLabel.top(toView: anchorView, constant: 5)
         countryNameLabel.left(toView: anchorView)
         countryNameLabel.right(toView: anchorView)
     }
     
     private func configurestatStackView(topAnchorView: UIView, remainingAnchorsView: UIView) {
         addSubview(statStackView)
-        statStackView.relativeTop(toView: topAnchorView, constant: 10)
+        statStackView.relativeTop(toView: topAnchorView, constant: 5)
         statStackView.left(toView: remainingAnchorsView)
         statStackView.right(toView: remainingAnchorsView)
-        statStackView.bottom(toView: remainingAnchorsView)
+        statStackView.bottom(toView: remainingAnchorsView, constant: 5)
     }
     
     func configure(with country: Country) {

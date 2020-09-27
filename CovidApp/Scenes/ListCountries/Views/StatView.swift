@@ -22,7 +22,6 @@ class StatView: UIView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
-        imageView.height(equalTo: 32)
         imageView.width(equalTo: 32)
         return imageView
     }()
