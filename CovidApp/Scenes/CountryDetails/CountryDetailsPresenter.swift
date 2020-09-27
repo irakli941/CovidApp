@@ -17,9 +17,16 @@ protocol CountryDetailsPresenter {
 }
 
 class CountryDetailsPresenterImpl: CountryDetailsPresenter {
+    let parameters: CountryDetailParameters
+    let view: CountryDetailsView
     
+    init(parameters: CountryDetailParameters,
+         view: CountryDetailsView) {
+        self.parameters = parameters
+        self.view = view
+    }
     
     func viewDidLoad() {
-        
+        print(parameters)
     }
 }

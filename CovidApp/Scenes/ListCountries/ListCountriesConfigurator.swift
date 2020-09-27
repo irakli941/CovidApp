@@ -8,8 +8,7 @@
 
 import Foundation
 
-
-class ListCountriesConfigurator {
+struct ListCountriesConfigurator {
     func configure(for viewController: ListCountriesViewController) {
         let apiClient = ApiClientImplementation()
         let apiSummaryGateway = ApiSummaryGatewayImpl(apiClient: apiClient)

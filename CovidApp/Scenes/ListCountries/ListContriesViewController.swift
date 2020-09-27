@@ -71,4 +71,7 @@ extension ListCountriesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.didSelect(row: indexPath.row)
     }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        presenter.didSelect(row: indexPath.row)
+    }
 }

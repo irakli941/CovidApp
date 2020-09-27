@@ -67,6 +67,6 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     }
     
     func didSelect(row: Int) {
-        
+        router.presentDetails(for: countries[row])
     }
 }

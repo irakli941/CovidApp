@@ -31,6 +31,8 @@
 		8F5FA562251F494600274C57 /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA561251F494600274C57 /* StatView.swift */; };
 		8F6F234125206A6E007065BB /* CountryCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F234025206A6E007065BB /* CountryCoreData.swift */; };
 		8F6F234425206C46007065BB /* SummaryCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F234325206C46007065BB /* SummaryCoreData.swift */; };
+		8F6F235025207EBE007065BB /* CountryDetailParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F234F25207EBE007065BB /* CountryDetailParameters.swift */; };
+		8F6F235325207EEA007065BB /* CountryDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6F235225207EEA007065BB /* CountryDetailsConfigurator.swift */; };
 		8FB1C8BB251F579700F36241 /* Double+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8BA251F579700F36241 /* Double+Formatting.swift */; };
 		8FB1C8CE251F662900F36241 /* GlobalCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8CD251F662900F36241 /* GlobalCoreData.swift */; };
 		8FB1C8D4251F67FB00F36241 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB1C8D3251F67FB00F36241 /* CoreDataStack.swift */; };
@@ -69,6 +71,8 @@
 		8F5FA561251F494600274C57 /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
 		8F6F234025206A6E007065BB /* CountryCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCoreData.swift; sourceTree = "<group>"; };
 		8F6F234325206C46007065BB /* SummaryCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCoreData.swift; sourceTree = "<group>"; };
+		8F6F234F25207EBE007065BB /* CountryDetailParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailParameters.swift; sourceTree = "<group>"; };
+		8F6F235225207EEA007065BB /* CountryDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsConfigurator.swift; sourceTree = "<group>"; };
 		8FB1C8BA251F579700F36241 /* Double+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Formatting.swift"; sourceTree = "<group>"; };
 		8FB1C8CD251F662900F36241 /* GlobalCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalCoreData.swift; sourceTree = "<group>"; };
 		8FB1C8D3251F67FB00F36241 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 			children = (
 				8FB1C8E9251F80CA00F36241 /* CountryDetailsViewController.swift */,
 				8FB1C8EC251F80F200F36241 /* CountryDetailsPresenter.swift */,
+				8F6F234F25207EBE007065BB /* CountryDetailParameters.swift */,
+				8F6F235225207EEA007065BB /* CountryDetailsConfigurator.swift */,
 			);
 			path = CountryDetails;
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 				8F5FA51A251F2C7100274C57 /* DisplayCountriesList.swift in Sources */,
 				8FB1C8ED251F80F200F36241 /* CountryDetailsPresenter.swift in Sources */,
 				8F5FA51D251F30E600274C57 /* ListCountriesPresenter.swift in Sources */,
+				8F6F235025207EBE007065BB /* CountryDetailParameters.swift in Sources */,
 				8F5FA516251F2BE800274C57 /* ListContriesViewController.swift in Sources */,
 				8F5FA4C2251F1C1500274C57 /* ApiClient.swift in Sources */,
 				8F5FA4CB251F214F00274C57 /* ApiSummaryGateway.swift in Sources */,
@@ -394,6 +401,7 @@
 				8F5FA4D5251F290F00274C57 /* Summary.swift in Sources */,
 				8FB1C8EA251F80CA00F36241 /* CountryDetailsViewController.swift in Sources */,
 				8F5FA523251F324A00274C57 /* ListCountriesConfigurator.swift in Sources */,
+				8F6F235325207EEA007065BB /* CountryDetailsConfigurator.swift in Sources */,
 				8F5FA4C5251F1D2600274C57 /* ApiResponse.swift in Sources */,
 				8F5FA520251F31B500274C57 /* ListCountriesRouter.swift in Sources */,
 				8FB1C8CE251F662900F36241 /* GlobalCoreData.swift in Sources */,
