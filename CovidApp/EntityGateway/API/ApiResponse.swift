@@ -15,7 +15,7 @@ struct NetworkRequestError: Error {
     let error: Error?
     
     var localizedDescription: String {
-        return error?.localizedDescription ?? "Network request error - no other information"
+        return error?.localizedDescription ?? "Network request error"
     }
 }
 
@@ -50,15 +50,5 @@ struct ApiResponse<T: Decodable> {
         } catch {
             throw ApiParseError(error: error, httpUrlResponse: httpUrlResponse, data: data)
         }
-    }
-}
-
-struct VoidResponse: Decodable { }
-
-extension NSError {
-    static func createPraseError() -> NSError {
-        return NSError(domain: "com.fortech.library",
-                       code: ApiParseError.code,
-                       userInfo: [NSLocalizedDescriptionKey: "A parsing error occured"])
     }
 }
