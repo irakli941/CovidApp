@@ -10,31 +10,19 @@ import UIKit
 
 public extension UIView {
     var safeTopAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return self.safeAreaLayoutGuide.topAnchor
-        }
-        return self.topAnchor
+        return self.safeAreaLayoutGuide.topAnchor
     }
     
     var safeLeftAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return self.safeAreaLayoutGuide.leftAnchor
-        }
-        return self.leftAnchor
+        return self.safeAreaLayoutGuide.leftAnchor
     }
     
     var safeRightAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return self.safeAreaLayoutGuide.rightAnchor
-        }
-        return self.rightAnchor
+        return self.safeAreaLayoutGuide.rightAnchor
     }
     
     var safeBottomAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return self.safeAreaLayoutGuide.bottomAnchor
-        }
-        return self.bottomAnchor
+        return self.safeAreaLayoutGuide.bottomAnchor
     }
     
     func left(toView view: UIView, constant value: CGFloat = 0) {
