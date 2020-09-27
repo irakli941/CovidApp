@@ -19,6 +19,7 @@ protocol ListCountriesPresenter {
     func viewDidLoad()
     func configure(cell: CountryCellView, forRow row: Int)
     func didSelect(row: Int)
+    func subscribeClicked(for country: Country)
 }
 
 class ListCountriesPresenterImpl: ListCountriesPresenter {
@@ -26,6 +27,7 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     private weak var view: ListCountriesView?
     private let displayCountriesListUseCase: DisplayCountriesListUseCase
     private let fetchCountrySubscriptionsUseCase: FetchSubscriptionsUseCase
+    private let manageSubscriptionUsecase: ManageCountrySubscriptionsUsecase
     internal let router: ListCountriesRouter //FIXME private
     private let homePage = "https://covid19api.com/"
     private var countries = [Country]() { didSet { view?.refreshCountriesView() } }
@@ -37,10 +39,12 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     init(view: ListCountriesView,
          displayCountriesListUseCase: DisplayCountriesListUseCase,
          fetchCountrySubscriptionsUseCase: FetchSubscriptionsUseCase,
+         manageSubscriptionUsecase: ManageCountrySubscriptionsUsecase,
          router: ListCountriesRouter) {
         self.view = view
         self.displayCountriesListUseCase = displayCountriesListUseCase
         self.fetchCountrySubscriptionsUseCase = fetchCountrySubscriptionsUseCase
+        self.manageSubscriptionUsecase = manageSubscriptionUsecase
         self.router = router
     }
     
@@ -55,10 +59,10 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
             }
         }
         
-        loadNotifications()
+        fetchCountrySubscriptions()
     }
     
-    private func loadNotifications() {
+    private func fetchCountrySubscriptions() {
         fetchCountrySubscriptionsUseCase.fetchCountrySubscriptions { (result) in
             switch result {
             case let .success(subscribedCountries):
@@ -92,6 +96,15 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
         router.presentDetails(for: countries[row], isSubscribed: isSubscribed(to: countries[row]))
     }
     
+    func subscribeClicked(for country: Country) {
+        let subscribed = self.isSubscribed(to: country)
+        if subscribed {
+            unsubscribe(from: country)
+        } else {
+            subscribe(to: country)
+        }
+    }
+    
     private func isSubscribed(to country: Country) -> Bool {
         for child in self.subscribedCountries {
             if child.countryCode == country.code {
@@ -99,6 +112,32 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
             }
         }
         return false
+    }
+    
+    private func subscribe(to country: Country) {
+        guard let countryCode = country.code else { return }
+        manageSubscriptionUsecase.subscribe(to: SubscriptionCountry(countryCode: countryCode)) { (response) in
+            switch response {
+            case let .success(subscriptionCountry):
+                self.fetchCountrySubscriptions()
+                print("successfully subscribed to \(subscriptionCountry.countryCode)")
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
+    
+    private func unsubscribe(from country: Country) {
+        guard let countryCode = country.code else { return }
+        manageSubscriptionUsecase.unsubscribe(from: SubscriptionCountry(countryCode: countryCode)) { (response) in
+            switch response {
+            case let .success(subscriptionCountry):
+                self.fetchCountrySubscriptions()
+                print("successfully unsubscribed from \(subscriptionCountry.countryCode)")
+            case let .failure(error):
+                print(error)
+            }
+        }
     }
 }
 

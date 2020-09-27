@@ -14,15 +14,17 @@ protocol CountryDetailsView: class {
 }
 
 protocol CountryDetailsPresenter {
+    var parameters: CountryDetailParameters { get }
     func viewDidLoad()
     var numberOfStats: Int { get }
     func configure(cell: CountryDetailCellView,
                    forRow row: Int)
+    func subscribeClicked()
 }
 
 class CountryDetailsPresenterImpl: CountryDetailsPresenter {
     
-    let parameters: CountryDetailParameters
+    var parameters: CountryDetailParameters
     private let manageSubscriptionUsecase: ManageCountrySubscriptionsUsecase
     private weak var view: CountryDetailsView?
     var numberOfStats: Int { return stats.count }
@@ -62,37 +64,9 @@ class CountryDetailsPresenterImpl: CountryDetailsPresenter {
         cell.configure(with: viewModel)
     }
     
-    private func subscribe() {
-        manageSubscriptionUsecase.subscribe(to: SubscriptionCountry(countryCode: parameters.country.code!)) { (response) in
-            switch response {
-            case let .success(subscriptionCountry):
-                self.isSubscribed = true
-                print("successfully subscribed to \(subscriptionCountry.countryCode)")
-            case let .failure(error):
-                print(error)
-            }
-        }
-    }
-    
-    private func unsubscribe() {
-        manageSubscriptionUsecase.unsubscribe(from: SubscriptionCountry(countryCode: parameters.country.code!)) { (response) in
-            switch response {
-            case let .success(subscriptionCountry):
-                self.isSubscribed = false
-                print("successfully unsubscribed from \(subscriptionCountry.countryCode)")
-            case let .failure(error):
-                print(error)
-            }
-        }
+    func subscribeClicked() {
+        self.isSubscribed = !self.isSubscribed
     }
 }
 
-extension CountryDetailsPresenterImpl: CountryDetailsViewDelegate {
-    func subscribeClicked() {
-        if isSubscribed {
-            unsubscribe()
-        } else {
-            subscribe()
-        }
-    }
-}
+

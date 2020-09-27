@@ -26,10 +26,6 @@ class CoreDataSubscriptionGateway: LocalPersistenceNotificationsGateway {
             completion(.failure(CoreError(message: "Failed adding the Subscription in the data base")))
             return
         }
-        guard let coreDataSubscriptions = viewContext.addEntity(withType: SubscriptionsCoreData.self) else {
-            completion(.failure(CoreError(message: "Failed adding the Subscription in the data base")))
-            return
-        }
         
         if fetchedSubscriptions != nil {
             coreDataSubscriptionCountry.configure(with: country)
@@ -41,14 +37,7 @@ class CoreDataSubscriptionGateway: LocalPersistenceNotificationsGateway {
                 completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
             }
         } else {
-            coreDataSubscriptionCountry.configure(with: country)
-            coreDataSubscriptions.addToCountrySubscriptions(coreDataSubscriptionCountry)
-            do {
-                try viewContext.save()
-                completion(.success(coreDataSubscriptionCountry.subscriptionCountry))
-            } catch {
-                completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
-            }
+            completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
         }
     }
     
@@ -57,23 +46,24 @@ class CoreDataSubscriptionGateway: LocalPersistenceNotificationsGateway {
             completion(.failure(CoreError(message: "Failed adding the Subscription in the data base")))
             return
         }
-        //        guard let coreDataSubscriptions = viewContext.addEntity(withType: SubscriptionsCoreData.self) else {
-        //            completion(.failure(CoreError(message: "Failed adding the Subscription in the data base")))
-        //            return
-        //        }
-        coreDataSubscriptionCountry.configure(with: country)
-        fetchedSubscriptions?.removeFromCountrySubscriptions(coreDataSubscriptionCountry)
-        do {
-            try viewContext.save()
-            completion(.success(coreDataSubscriptionCountry.subscriptionCountry))
-        } catch {
+        
+        if fetchedSubscriptions != nil {
+            coreDataSubscriptionCountry.configure(with: country)
+            fetchedSubscriptions?.removeFromCountrySubscriptions(coreDataSubscriptionCountry)
+            do {
+                try viewContext.save()
+                completion(.success(coreDataSubscriptionCountry.subscriptionCountry))
+            } catch {
+                completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
+            }
+        } else {
             completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
         }
     }
     
     func fetchSubscribedCountries(completion: @escaping FetchSubscribedCountriesCompletionHandler) {
         if let subscriptionsCoreData = try? viewContext.allEntities(withType: SubscriptionsCoreData.self) {
-            if subscriptionsCoreData.count > 0 {
+            if subscriptionsCoreData.count == 1 {
                 self.fetchedSubscriptions = subscriptionsCoreData.first!
                 var result:Set<SubscriptionCountry> = []
                 
@@ -86,17 +76,25 @@ class CoreDataSubscriptionGateway: LocalPersistenceNotificationsGateway {
                 }
                 completion(.success(result))
             } else {
-                completion(.failure(CoreError(message: "Failed retrieving Subscription from the data base")))
+                createInitialSubscriptionsCoreData { (response) in
+                    // empty subscription created
+                }
             }
         } else {
             completion(.failure(CoreError(message: "Failed retrieving Subscription from the data base")))
         }
     }
     
-    private func createInitialSubscriptionsCoreData(completion: @escaping FetchSubscribedCountriesCompletionHandler) {
+    private func createInitialSubscriptionsCoreData(completion: @escaping (_ result: Result<SubscriptionsCoreData>) -> Void) {
         guard let coreDataSubscriptions = viewContext.addEntity(withType: SubscriptionsCoreData.self) else {
             completion(.failure(CoreError(message: "Failed adding the Subscription in the data base")))
             return
+        }
+        do {
+            try viewContext.save()
+            completion(.success(coreDataSubscriptions))
+        } catch {
+            completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
         }
     }
 }

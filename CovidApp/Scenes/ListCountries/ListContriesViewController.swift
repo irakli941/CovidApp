@@ -94,3 +94,9 @@ extension ListCountriesViewController: UICollectionViewDelegateFlowLayout {
         presenter.didSelect(row: indexPath.row)
     }
 }
+
+extension ListCountriesViewController: CountryDetailsViewDelegate {
+    func subscribeClicked(for country: Country) {
+        presenter.subscribeClicked(for: country)
+    }
+}

@@ -23,7 +23,6 @@ struct CountryDetailsConfigurator {
         let presenter = CountryDetailsPresenterImpl(manageSubscriptionUsecase: manageSubscriptionUsecase,
                                                     parameters: params,
                                                     view: viewController)
-        viewController.delegate = presenter
         viewController.presenter = presenter
     }
 }

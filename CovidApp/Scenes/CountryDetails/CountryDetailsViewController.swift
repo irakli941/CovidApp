@@ -9,7 +9,7 @@
 import UIKit
 
 protocol CountryDetailsViewDelegate: class {
-    func subscribeClicked()
+    func subscribeClicked(for country: Country)
 }
 
 class CountryDetailsViewController: UIViewController {
@@ -44,13 +44,14 @@ class CountryDetailsViewController: UIViewController {
         let barItem = UIBarButtonItem(image: image,
                                       style: .plain,
                                       target: self,
-                                      action: #selector(subscribeClicked))
+                                      action: #selector(subscribeButtonClicked))
         self.navigationItem.rightBarButtonItem = barItem
         view.layoutIfNeeded()
     }
     
-    @objc private func subscribeClicked() {
-        delegate?.subscribeClicked()
+    @objc private func subscribeButtonClicked() {
+        delegate?.subscribeClicked(for: presenter.parameters.country)
+        presenter.subscribeClicked()
     }
     
     private func configureCountryListCollectionView(anchorView: UIView) {
