@@ -9,10 +9,10 @@
 import Foundation
 
 extension SummaryCoreData {
-//    var summary: Summary {
-//        return Summary(global: global!.global,
-//                       countries: countries.map())
-//    }
+    var summary: Summary {
+        return Summary(global: global!.global,
+                       countries: (countries?.array as! [CountryCoreData]).map { $0.country })
+    }
     
     func configure(with global: GlobalCoreData, countries: [CountryCoreData]) {
         self.global = global
