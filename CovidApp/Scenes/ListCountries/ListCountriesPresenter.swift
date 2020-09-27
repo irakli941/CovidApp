@@ -20,7 +20,6 @@ protocol ListCountriesPresenter {
     func didSelect(row: Int)
 }
 
-
 class ListCountriesPresenterImpl: ListCountriesPresenter {
     
     private weak var view: ListCountriesView?
