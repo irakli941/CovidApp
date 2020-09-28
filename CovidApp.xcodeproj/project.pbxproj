@@ -12,6 +12,8 @@
 		8F071045251468CB00544661 /* CovidApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F071043251468CB00544661 /* CovidApp.xcdatamodeld */; };
 		8F071047251468CD00544661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F071046251468CD00544661 /* Assets.xcassets */; };
 		8F07104A251468CD00544661 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F071048251468CD00544661 /* LaunchScreen.storyboard */; };
+		8F3DB8612521B0010023D803 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3DB8602521B0010023D803 /* Reachability.swift */; };
+		8F3DB8642521B0720023D803 /* ListCountriesViewController+ReachabilityAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3DB8632521B0720023D803 /* ListCountriesViewController+ReachabilityAlerts.swift */; };
 		8F5FA4BB251F124E00274C57 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA4BA251F124E00274C57 /* Country.swift */; };
 		8F5FA4BF251F1B5700274C57 /* SummaryApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA4BE251F1B5700274C57 /* SummaryApiRequest.swift */; };
 		8F5FA4C2251F1C1500274C57 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA4C1251F1C1500274C57 /* ApiClient.swift */; };
@@ -60,6 +62,8 @@
 		8F071046251468CD00544661 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8F071049251468CD00544661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8F07104B251468CD00544661 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F3DB8602521B0010023D803 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		8F3DB8632521B0720023D803 /* ListCountriesViewController+ReachabilityAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListCountriesViewController+ReachabilityAlerts.swift"; sourceTree = "<group>"; };
 		8F5FA4BA251F124E00274C57 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		8F5FA4BE251F1B5700274C57 /* SummaryApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryApiRequest.swift; sourceTree = "<group>"; };
 		8F5FA4C1251F1C1500274C57 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				8F5FA51C251F30E600274C57 /* ListCountriesPresenter.swift */,
 				8F5FA51F251F31B500274C57 /* ListCountriesRouter.swift */,
 				8F5FA522251F324A00274C57 /* ListCountriesConfigurator.swift */,
+				8F3DB8632521B0720023D803 /* ListCountriesViewController+ReachabilityAlerts.swift */,
 			);
 			path = ListCountries;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				8F5FA4B9251F109200274C57 /* Entities */,
 				8F5FA4B8251F108A00274C57 /* Requests */,
 				8F5FA4B7251F108200274C57 /* Gateways */,
+				8F3DB8602521B0010023D803 /* Reachability.swift */,
 				8F5FA4C1251F1C1500274C57 /* ApiClient.swift */,
 				8F5FA4C4251F1D2600274C57 /* ApiResponse.swift */,
 			);
@@ -449,9 +455,11 @@
 				8F07103B251468CB00544661 /* AppDelegate.swift in Sources */,
 				8FB1C8D4251F67FB00F36241 /* CoreDataStack.swift in Sources */,
 				8F5FA54B251F3BFD00274C57 /* CountryCollectionViewCell.swift in Sources */,
+				8F3DB8612521B0010023D803 /* Reachability.swift in Sources */,
 				8FB1C8BB251F579700F36241 /* Double+Formatting.swift in Sources */,
 				8F5FA4BF251F1B5700274C57 /* SummaryApiRequest.swift in Sources */,
 				8FB1C8D8251F694400F36241 /* NSManagedObjectContext-Utils.swift in Sources */,
+				8F3DB8642521B0720023D803 /* ListCountriesViewController+ReachabilityAlerts.swift in Sources */,
 				8F6F2374252119EC007065BB /* LocalPersistenceNotificationsGateway.swift in Sources */,
 				8FB1C8E2251F77C900F36241 /* CacheSummaryGateway.swift in Sources */,
 				8F071045251468CB00544661 /* CovidApp.xcdatamodeld in Sources */,

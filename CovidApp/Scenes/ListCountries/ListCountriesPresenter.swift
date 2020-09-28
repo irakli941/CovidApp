@@ -10,7 +10,7 @@ import UIKit
 
 protocol ListCountriesView: class {
     func refreshCountriesView()
-    func setNavigationBar(title: String)
+    func showError(with title: String, message: String)
 }
 
 protocol ListCountriesPresenter {
@@ -49,7 +49,6 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     }
     
     func viewDidLoad() {
-        setNavigationBar(title: "Covid-19 Statistics")
         displayCountriesListUseCase.displayCountries { (result) in
             switch result {
             case let .success(countries):
@@ -74,16 +73,12 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
         }
     }
     
-    private func setNavigationBar(title: String) {
-        view?.setNavigationBar(title: title)
-    }
-    
     private func handleCountriesReceived(_ countries: [Country]) {
         self.countries = countries
     }
     
     private func handleCountriesError(_ error: Error) {
-        print("მონაცემები ვერ ჩაიტვირთა") // FIXME SHOW ALERT
+        view?.showError(with: "მონაცემები ვერ ჩაიტვირთა", message: "") //FIXME use localized strings
     }
     
     func configure(cell: CountryCellView, forRow row: Int) {
@@ -140,6 +135,8 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
         }
     }
 }
+
+// MARK: ListCountriesViewDelegate
 
 extension ListCountriesPresenterImpl: ListCountriesViewDelegate {
     func webNavigationItemClicked() {

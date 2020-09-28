@@ -13,11 +13,16 @@ protocol CountryDetailsViewDelegate: class {
 }
 
 class CountryDetailsViewController: UIViewController {
+    // MARK: Properties
     var configurator: CountryDetailsConfigurator!
     var presenter: CountryDetailsPresenter!
     weak var delegate: CountryDetailsViewDelegate?
+    //FIXME move consts to seperate model file
     private let detailCellId = "countryDetailCellId"
-    private lazy var countryListCollectionView: UICollectionView = {
+    private let subscribedIcon = "subscribed"
+    private let unsubscribedIcon = "unsubscribed"
+    
+    private lazy var countryDetailsCollectionView: UICollectionView = {
         var config = UICollectionLayoutListConfiguration(appearance:.insetGrouped)
         let layout = UICollectionViewCompositionalLayout.list(using: config)
         let collectionView = UICollectionView(frame: CGRect.zero,
@@ -34,19 +39,9 @@ class CountryDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(for: self)
-        view.backgroundColor = UIColor.white
+        configureBackgroundColor()
         configureCountryListCollectionView(anchorView: self.view)
         presenter.viewDidLoad()
-    }
-    
-    func configureFavouritesButton(isSubscribed: Bool) {
-        let image = UIImage(named: isSubscribed ? "subscribed" : "unsubscribed")
-        let barItem = UIBarButtonItem(image: image,
-                                      style: .plain,
-                                      target: self,
-                                      action: #selector(subscribeButtonClicked))
-        self.navigationItem.rightBarButtonItem = barItem
-        view.layoutIfNeeded()
     }
     
     @objc private func subscribeButtonClicked() {
@@ -55,17 +50,40 @@ class CountryDetailsViewController: UIViewController {
     }
     
     private func configureCountryListCollectionView(anchorView: UIView) {
-        view.addSubview(countryListCollectionView)
-        countryListCollectionView.top(toView: anchorView)
-        countryListCollectionView.bottom(toView: anchorView)
-        countryListCollectionView.left(toView: anchorView)
-        countryListCollectionView.right(toView: anchorView)
+        view.addSubview(countryDetailsCollectionView)
+        countryDetailsCollectionView.top(toView: anchorView)
+        countryDetailsCollectionView.bottomAnchor.constraint(equalTo: anchorView.bottomAnchor).isActive = true
+        countryDetailsCollectionView.left(toView: anchorView)
+        countryDetailsCollectionView.right(toView: anchorView)
+    }
+    
+    //FIXME make reusabable and more generic
+    private func configureBackgroundColor() {
+        
+        switch traitCollection.userInterfaceStyle {
+        case .light, .unspecified:
+            view.backgroundColor = .white
+        case .dark:
+            view.backgroundColor = UIColor.black
+        @unknown default:
+            view.backgroundColor = UIColor.gray
+        }
     }
 }
 
 extension CountryDetailsViewController: CountryDetailsView {
     func refreshDetailsView() {
-        countryListCollectionView.reloadData()
+        countryDetailsCollectionView.reloadData()
+        view.layoutIfNeeded()
+    }
+    
+    func configureFavouritesButton(isSubscribed: Bool) {
+        let image = UIImage(named: isSubscribed ? subscribedIcon : unsubscribedIcon)
+        let barItem = UIBarButtonItem(image: image,
+                                      style: .plain,
+                                      target: self,
+                                      action: #selector(subscribeButtonClicked))
+        self.navigationItem.rightBarButtonItem = barItem
         view.layoutIfNeeded()
     }
 }

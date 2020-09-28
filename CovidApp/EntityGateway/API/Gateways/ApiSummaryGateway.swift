@@ -27,7 +27,6 @@ class ApiSummaryGatewayImpl: ApiSummaryGateway {
             case let .success(response):
                 completion(.success(response.entity))
             case let .failure(error):
-                print(error)
                 completion(.failure(error))
             }
         }

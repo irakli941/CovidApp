@@ -19,15 +19,12 @@ struct NetworkRequestError: Error {
     }
 }
 
-
 struct ApiError: Error {
     let data: Data?
     let httpUrlResponse: HTTPURLResponse
 }
 
 struct ApiParseError: Error {
-    static let code = 999
-    
     let error: Error
     let httpUrlResponse: HTTPURLResponse
     let data: Data?
