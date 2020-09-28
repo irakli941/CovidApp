@@ -1,5 +1,5 @@
 //
-//  CountryDetailCellView.swift
+//  CountryDetailCollectionCellView.swift
 //  CovidApp
 //
 //  Created by Irakli on 9/27/20.
@@ -8,7 +8,11 @@
 
 import UIKit
 
-class CountryDetailCellView: UICollectionViewCell {
+protocol CountryDetailCellView {
+    func configure(with viewModel: CountryDetailCellViewModel)
+}
+
+class CountryDetailCollectionCellView: UICollectionViewCell, CountryDetailCellView {
     
     private let iconImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "stat")?.withRenderingMode(.alwaysTemplate))

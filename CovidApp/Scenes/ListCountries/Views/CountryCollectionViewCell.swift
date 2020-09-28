@@ -8,11 +8,15 @@
 
 import UIKit
 
-protocol CountryCellView { // FIXME rename or delete
+protocol CountryCellView { 
     func configure(with country: Country) 
 }
 
 class CountryCollectionViewCell: UICollectionViewCell, CountryCellView {
+    
+    private let confirmedIcon = "confirmed"
+    private let recoveredIcon = "recovered"
+    private let diedIcon = "died"
     
     private let countryNameLabel: UILabel = {
         let label = UILabel()
@@ -22,18 +26,18 @@ class CountryCollectionViewCell: UICollectionViewCell, CountryCellView {
         return label
     }()
     
-    private let confirmedStatView: StatView = {
-        let view = StatView(iconName: "confirmed")
+    private lazy var confirmedStatView: StatView = {
+        let view = StatView(iconName: confirmedIcon)
         return view
     }()
     
-    private let recoveredStatView: StatView = {
-        let view = StatView(iconName: "recovered")
+    private lazy var recoveredStatView: StatView = {
+        let view = StatView(iconName: recoveredIcon)
         return view
     }()
     
-    private let deathsStatView: StatView = {
-        let view = StatView(iconName: "died")
+    private lazy var deathsStatView: StatView = {
+        let view = StatView(iconName: diedIcon)
         return view
     }()
     

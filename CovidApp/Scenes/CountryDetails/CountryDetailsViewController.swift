@@ -31,7 +31,7 @@ class CountryDetailsViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
-        collectionView.register(CountryDetailCellView.self,
+        collectionView.register(CountryDetailCollectionCellView.self,
                                 forCellWithReuseIdentifier: detailCellId)
         return collectionView
     }()
@@ -99,7 +99,7 @@ extension CountryDetailsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: detailCellId,
-                                                      for: indexPath) as! CountryDetailCellView
+                                                      for: indexPath) as! CountryDetailCollectionCellView
         presenter.configure(cell: cell, forRow: indexPath.row)
         return cell
     }
