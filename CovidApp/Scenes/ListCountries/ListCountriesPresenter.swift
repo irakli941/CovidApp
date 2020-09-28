@@ -21,16 +21,15 @@ protocol ListCountriesPresenter {
     func configure(cell: CountryCellView, forRow row: Int)
     func didSelect(row: Int)
     func subscribeClicked(for country: Country)
-    func networkReturned()
 }
 
 class ListCountriesPresenterImpl: ListCountriesPresenter {
-    
+    // MARK: Properties
     private weak var view: ListCountriesView?
     private let displayCountriesListUseCase: DisplayCountriesListUseCase
     private let fetchCountrySubscriptionsUseCase: FetchSubscriptionsUseCase
     private let manageSubscriptionUsecase: ManageCountrySubscriptionsUsecase
-    internal let router: ListCountriesRouter //FIXME private
+    internal let router: ListCountriesRouter 
     private let homePage = "https://covid19api.com/"
     private var countries = [Country]() { didSet { view?.refreshCountriesView() } }
     private var subscribedCountries = Set<SubscriptionCountry>() 
@@ -76,11 +75,6 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
                 print(error)
             }
         }
-    }
-    
-    func networkReturned() {
-        fetchCountries()
-        fetchCountrySubscriptions()
     }
     
     private func handleCountriesReceived(_ countries: [Country]) {
