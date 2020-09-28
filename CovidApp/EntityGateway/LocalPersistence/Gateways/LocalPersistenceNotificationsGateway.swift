@@ -80,7 +80,12 @@ class CoreDataSubscriptionGateway: LocalPersistenceNotificationsGateway {
                 completion(.success(result))
             } else {
                 createInitialSubscriptionsCoreData { (response) in
-                    // empty subscription created
+                    switch response {
+                    case let .success(subscriptions):
+                        completion(.success(subscriptions))
+                    case let .failure(error):
+                        completion(.failure(error))
+                    }
                 }
             }
         } else {
@@ -88,14 +93,15 @@ class CoreDataSubscriptionGateway: LocalPersistenceNotificationsGateway {
         }
     }
     
-    private func createInitialSubscriptionsCoreData(completion: @escaping (_ result: Result<SubscriptionsCoreData>) -> Void) {
+    private func createInitialSubscriptionsCoreData(completion: @escaping (_ result: Result<Set<SubscriptionCountry>>) -> Void) {
         guard let coreDataSubscriptions = viewContext.addEntity(withType: SubscriptionsCoreData.self) else {
             completion(.failure(CoreError(message: "Failed adding the Subscription in the data base")))
             return
         }
         do {
             try viewContext.save()
-            completion(.success(coreDataSubscriptions))
+            self.fetchedSubscriptionsCoreData = coreDataSubscriptions
+            completion(.success(Set()))
         } catch {
             completion(.failure(CoreError(message: "Failed to save Subscription entity in the data base")))
         }

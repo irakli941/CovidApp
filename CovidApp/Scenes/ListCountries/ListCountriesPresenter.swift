@@ -6,10 +6,11 @@
 //  Copyright © 2020 Irakli Shelia. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 protocol ListCountriesView: class {
     func refreshCountriesView()
+    func open(url: URL)
     func showError(with title: String, message: String)
 }
 
@@ -20,6 +21,7 @@ protocol ListCountriesPresenter {
     func configure(cell: CountryCellView, forRow row: Int)
     func didSelect(row: Int)
     func subscribeClicked(for country: Country)
+    func networkReturned()
 }
 
 class ListCountriesPresenterImpl: ListCountriesPresenter {
@@ -49,6 +51,11 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     }
     
     func viewDidLoad() {
+        fetchCountries()
+        fetchCountrySubscriptions()
+    }
+    
+    private func fetchCountries() {
         displayCountriesListUseCase.displayCountries { (result) in
             switch result {
             case let .success(countries):
@@ -57,8 +64,6 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
                 self.handleCountriesError(error)
             }
         }
-        
-        fetchCountrySubscriptions()
     }
     
     private func fetchCountrySubscriptions() {
@@ -71,6 +76,11 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
                 print(error)
             }
         }
+    }
+    
+    func networkReturned() {
+        fetchCountries()
+        fetchCountrySubscriptions()
     }
     
     private func handleCountriesReceived(_ countries: [Country]) {
@@ -141,6 +151,6 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
 extension ListCountriesPresenterImpl: ListCountriesViewDelegate {
     func webNavigationItemClicked() {
         guard let url = URL(string: homePage) else { return }
-        UIApplication.shared.open(url)
+        view?.open(url: url)
     }
 }

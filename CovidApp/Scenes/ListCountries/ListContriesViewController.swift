@@ -18,6 +18,7 @@ class ListCountriesViewController: UIViewController {
     var presenter: ListCountriesPresenter!
     var delegegate: ListCountriesViewDelegate?
     let reachability = try! Reachability()
+    var connection: Reachability.Connection?
     //FIXME move consts to seperate model file
     private let countryCellId = "CountryViewCell"
     private let homePageIconName = "homepage"
@@ -41,10 +42,15 @@ class ListCountriesViewController: UIViewController {
         super.viewDidLoad()
         configurator.configure(for: self)
         configureCollectionView(anchorView: view)
-        configureNetworkAlerts()
+        
         configureNavigationBar(title: sceneTitle, iconName: homePageIconName)
         configureBackgroundColor()
         presenter.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        configureNetworkAlerts()
     }
     
     private func configureCollectionView(anchorView: UIView) {
@@ -77,6 +83,10 @@ class ListCountriesViewController: UIViewController {
 }
 
 extension ListCountriesViewController: ListCountriesView {
+    func open(url: URL) {
+        UIApplication.shared.open(url)
+    }
+    
     func showError(with title: String, message: String) {
         presentAlert(withTitle: title, message: message)
     }

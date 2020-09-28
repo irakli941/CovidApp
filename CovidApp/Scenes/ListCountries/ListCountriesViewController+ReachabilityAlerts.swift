@@ -12,14 +12,31 @@ import Foundation
 
 extension ListCountriesViewController {
     func configureNetworkAlerts() {
-        reachability.whenUnreachable = { _ in
-            //FIXME use localized strings
-            self.presentAlert(withTitle: "ქსელის ხარვეზი", message: "ფაფუ ინტერნეტი")
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
         do {
             try reachability.startNotifier()
         } catch {
             print("Unable to start notifier")
         }
+    }
+    
+    @objc func reachabilityChanged(note: Notification) {
+        
+        let reachability = note.object as! Reachability
+        switch reachability.connection {
+        case .wifi:
+            if self.connection == .unavailable {
+                presenter.networkReturned()
+            }
+        case .cellular:
+            if self.connection == .unavailable {
+                presenter.networkReturned()
+            }
+        case .unavailable:
+            self.presentAlert(withTitle: "ქსელის ხარვეზი", message: "ფაფუ ინტერნეტი")
+        case .none:
+            break
+        }
+        self.connection = reachability.connection
     }
 }
