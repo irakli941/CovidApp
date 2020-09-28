@@ -8,6 +8,7 @@
 
 import Foundation
 
+// FIXME move somewhere
 struct CoreError: Error {
     var localizedDescription: String {
         return message
@@ -16,4 +17,4 @@ struct CoreError: Error {
     var message = ""
 }
 
-typealias Result<T> = Swift.Result<T, Error> //FIX ME move somewhere
+typealias Result<T> = Swift.Result<T, Error>
