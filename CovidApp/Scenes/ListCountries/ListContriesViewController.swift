@@ -82,6 +82,8 @@ class ListCountriesViewController: UIViewController {
     }
 }
 
+// MARK: ListCountriesView
+
 extension ListCountriesViewController: ListCountriesView {
     func open(url: URL) {
         UIApplication.shared.open(url)

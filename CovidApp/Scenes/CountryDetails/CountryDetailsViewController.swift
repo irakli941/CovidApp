@@ -71,6 +71,8 @@ class CountryDetailsViewController: UIViewController {
     }
 }
 
+// MARK: CountryDetailsView
+
 extension CountryDetailsViewController: CountryDetailsView {
     func refreshDetailsView() {
         countryDetailsCollectionView.reloadData()
