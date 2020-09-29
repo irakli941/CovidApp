@@ -55,7 +55,8 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     }
     
     private func fetchCountries() {
-        displayCountriesListUseCase.displayCountries { (result) in
+        displayCountriesListUseCase.displayCountries { [weak self] (result) in
+            guard let self = self else { return } 
             switch result {
             case let .success(countries):
                 self.handleCountriesReceived(countries)
@@ -66,7 +67,8 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     }
     
     private func fetchCountrySubscriptions() {
-        fetchCountrySubscriptionsUseCase.fetchCountrySubscriptions { (result) in
+        fetchCountrySubscriptionsUseCase.fetchCountrySubscriptions { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
             case let .success(subscribedCountries):
                 print(subscribedCountries)
@@ -115,7 +117,8 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     
     private func subscribe(to country: Country) {
         guard let countryCode = country.code else { return }
-        manageSubscriptionUsecase.subscribe(to: SubscriptionCountry(countryCode: countryCode)) { (response) in
+        manageSubscriptionUsecase.subscribe(to: SubscriptionCountry(countryCode: countryCode)) { [weak self] (response) in
+            guard let self = self else { return }
             switch response {
             case let .success(subscriptionCountry):
                 self.fetchCountrySubscriptions()
@@ -128,7 +131,8 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     
     private func unsubscribe(from country: Country) {
         guard let countryCode = country.code else { return }
-        manageSubscriptionUsecase.unsubscribe(from: SubscriptionCountry(countryCode: countryCode)) { (response) in
+        manageSubscriptionUsecase.unsubscribe(from: SubscriptionCountry(countryCode: countryCode)) { [weak self] (response) in
+            guard let self = self else { return }
             switch response {
             case let .success(subscriptionCountry):
                 self.fetchCountrySubscriptions()
