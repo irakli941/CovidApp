@@ -30,7 +30,7 @@ class ListCountriesPresenterImpl: ListCountriesPresenter {
     private let fetchCountrySubscriptionsUseCase: FetchSubscriptionsUseCase
     private let manageSubscriptionUsecase: ManageCountrySubscriptionsUsecase
     internal let router: ListCountriesRouter 
-    private let homePage = "https://covid19api.com/"
+    private let homePage = "https://covid19api.com/" //FIXME move to model
     private var countries = [Country]() { didSet { view?.refreshCountriesView() } }
     private var subscribedCountries = Set<SubscriptionCountry>() 
     var numberOfCountries: Int {
