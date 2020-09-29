@@ -43,7 +43,7 @@ class ListCountriesViewController: UIViewController {
         configurator.configure(for: self)
         configureCollectionView(anchorView: view)
         
-        configureNavigationBar(title: sceneTitle, iconName: homePageIconName)
+        configureNavigationBar(with: sceneTitle, iconName: homePageIconName)
         configureBackgroundColor()
         presenter.viewDidLoad()
     }
@@ -61,7 +61,7 @@ class ListCountriesViewController: UIViewController {
         countryListCollectionView.right(toView: anchorView)
     }
     
-    private func configureNavigationBar(title: String, iconName: String) {
+    private func configureNavigationBar(with title: String, iconName: String) {
         
         let homepageButton = UIButton(type: .system)
         homepageButton.setImage(UIImage(named: homePageIconName), for: .normal)
