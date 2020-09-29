@@ -8,6 +8,9 @@
 
 import Foundation
 
+// FIXME its good to have each entity for different layer, i.e ApiCountry, CoreDataCountry, Country, etc..
+// For simplicity we will use Country entity as is, without additional ApiCountry layer
+
 struct Country: Codable {
     let name: String?
     let code: String?
