@@ -43,8 +43,7 @@ extension Country {
         
     }
 }
-extension Country
-{
+extension Country {
     func displayableProperties() -> [(String, String)] {
         var properties: [(String, String)] = []
         let mirror = Mirror(reflecting: self)
